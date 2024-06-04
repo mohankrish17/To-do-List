@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+    html {
+    background-color: #f5c5ff;
+    }
+    body {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    min-height: 95vh;
+    }
+    h1{
+    text-align: center;
+    color: rgba(76, 0, 255, 0.577);
+    }
+    .box1 {
+    margin: 50px auto 30px auto;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+    padding: 0px 30px 0px 30px;
+    }
+    .box2 {
+    margin: 30px auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+    padding: 0px 30px 20px 30px;
+    }
+    form {
+    text-align: center;
+  }
+  button{
+    border-color: transparent;
+    background-color: #a683e3;
+    color: #fff;
+    border-radius: 5px;
+  }
+  ::placeholder {
+    color: lightgray;
+    opacity: 1;
+  }
+  p {
+    margin: 0;
+    padding: 20px 0;
+    font-size: 20px;
+    color: #00204a;
+  }
+  .items {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 10px 0px 10px 0px;
+  }
+  input[type="text"] {
+    height: 50px;
+    padding-top: 10px;
+    border: none;
+    background: transparent;
+    font-weight: 200;
+  }
+  input[type="checkbox"] {
+    margin: 20px;
+    margin-left: 0;
+  }
+    </style>
+</head>
+<body>
+    <div class="box1">
+    <h1><%= day %> </h1> 
+    </div>
+    <div class="box2">
+    <!-- <ul>
+        <% tasks.forEach(task => { %>
+           <li> <%= task %> </li>
+        <% }); %>
+    </ul> -->
+
+    <!-- <% if(tasks.length == 0) { %>
+        <form action="/add" method="post">
+            <input type="text" name="task" placeholder="Add a new task" id="" required>
+            <button type="submit">Add Task</button>
+        </form>
+    <% } %> -->
+
+    <% for(let task of tasks){%>
+        <div class="items">
+        <form action="/delete" method="post">
+            <input type="checkbox" onchange="this.form.submit()" name="delete" value="<%= task %>">
+          </form>
+  
+          <p >
+            <%= task %>
+          </p>
+        </div>
+    <% } %>
+    <form action="/add" method="post">
+        <input type="text" name="task" placeholder="Add a new task" id="" required>
+        <button type="submit">Add Task</button>
+    </form>
+    </div>
+</body>
+</html>
